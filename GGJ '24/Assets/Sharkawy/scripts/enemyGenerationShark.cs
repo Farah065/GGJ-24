@@ -15,7 +15,6 @@ public class enemyGenerationShark : MonoBehaviour
     public float maxRate;
     public float currRate;
     public float increment;
-    float timeLapsed = 0;
     float spawnRate;
     // Start is called before the first frame update
     void Start()
