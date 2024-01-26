@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 1267844314}
   - component: {fileID: 1267844318}
   - component: {fileID: 1267844317}
-  - component: {fileID: 1267844319}
+  - component: {fileID: 1267844316}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -465,6 +465,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1267844316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267844313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8486bcf5b5f55364cbe26d776c2ad6a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1267844317}
+  moveSpeed: 5.5
+  forceToApply: {x: 0, y: 0}
+  PlayerInput: {x: 0, y: 0}
+  forceDamping: 1.2
 --- !u!50 &1267844317
 Rigidbody2D:
   serializedVersion: 4
@@ -515,23 +532,6 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.5}
       - {x: 0.5, y: -0.5}
       - {x: 0.5, y: 0.5}
---- !u!114 &1267844319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267844313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8486bcf5b5f55364cbe26d776c2ad6a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 1267844317}
-  moveSpeed: 5.5
-  forceToApply: {x: 0, y: 0}
-  PlayerInput: {x: 0, y: 0}
-  forceDamping: 1.2
 --- !u!1001 &5139973264025422135
 PrefabInstance:
   m_ObjectHideFlags: 0
