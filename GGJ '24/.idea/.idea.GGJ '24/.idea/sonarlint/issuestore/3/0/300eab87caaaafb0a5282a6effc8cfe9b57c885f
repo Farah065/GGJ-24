@@ -1,7 +1,0 @@
-
-vcsharpsquid:S101"URename class 'HAHAtest' to match pascal case naming rules, consider using 'HahAtest'.( †ÚÎýÿÿÿÿ
-Icsharpsquid:S3903"'Move 'HAHAtest' into a named namespace.( †ÚÎýÿÿÿÿ
-Kcsharpsquid:S2933""Make '_keywordActions' 'readonly'.(òáÑÃøÿÿÿÿ8—§ðºÔ1
-hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(Ì……ˆ8«À…»Ô1
-Šcsharpsquid:S1450"aRemove the field '_keywordRecognizer' and declare it as a local variable in the relevant methods.(Èí¿ëüÿÿÿÿ8ºú‰»Ô1
-scsharpsquid:S3241,"JChange return type to 'void'; not a single caller uses the returned value.(æ®™éüÿÿÿÿ8Òþƒ»Ô1
