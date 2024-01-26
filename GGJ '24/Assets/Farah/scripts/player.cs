@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float moveSpeed;
@@ -31,8 +31,7 @@ public class player : MonoBehaviour
         if (collision.collider.CompareTag("Bullet"))
         {
             // temp code, replace with some sort of condition for bullet direction
-            forceToApply = new Vector2(PlayerInput.x * -15f, PlayerInput.y * -15f);
-            Destroy(collision.gameObject);
+            // forceToApply = new Vector2(PlayerInput.x * -15f, PlayerInput.y * -15f);
         }
     }
 }
