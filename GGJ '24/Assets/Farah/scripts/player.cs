@@ -6,16 +6,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
+    private Animator anim;
+
     public float moveSpeed;
-    public Vector2 forceToApply;
-    public Vector2 PlayerInput;
     public float forceDamping;
+    private Vector2 forceToApply;
+    private Vector2 PlayerInput;
+
     public bool canMove;
     public bool invincible;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         canMove = true;
         invincible = false;
     }
@@ -35,6 +40,32 @@ public class Player : MonoBehaviour
                 forceToApply = Vector2.zero;
             }
             rb.velocity = moveForce;
+            
+            if(rb.velocity.x > 0)
+            {
+                anim.SetInteger("x", 1);
+            }
+            else if(rb.velocity.x < 0)
+            {
+                anim.SetInteger("x", -1);
+            }
+            else
+            {
+                anim.SetInteger("x", 0);
+            }
+
+            if (rb.velocity.y > 0)
+            {
+                anim.SetInteger("y", 1);
+            }
+            else if (rb.velocity.y < 0)
+            {
+                anim.SetInteger("y", -1);
+            }
+            else
+            {
+                anim.SetInteger("y", 0);
+            }
         }
     }
 
