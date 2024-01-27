@@ -15,7 +15,7 @@ public class HAHAtest : MonoBehaviour
     Dictionary<string, Action> keywordActions = new();
 
     public bool isLaughing;
-    public int laughBufferLength = 1;
+    public int laughBufferLength = 3;
     public int laughBufferCountdown;
 
     // Start is called before the first frame update
@@ -26,12 +26,21 @@ public class HAHAtest : MonoBehaviour
 		keywordActions.Add("A", Laugh);
 		keywordActions.Add("H", Laugh);
 		keywordActions.Add("HA", Laugh);
-		keywordActions.Add("HAH", Laugh);
+        keywordActions.Add("HAHA", Laugh);
+        keywordActions.Add("HAHAHA", Laugh);
+        keywordActions.Add("HAHAHAHA", Laugh);
 		keywordActions.Add("HU", Laugh);
-		keywordActions.Add("HUH", Laugh);
+		keywordActions.Add("HUHU", Laugh);
+		keywordActions.Add("HUHUHU", Laugh);
+		keywordActions.Add("HUHUHUHU", Laugh);
 		keywordActions.Add("HO", Laugh);
-		keywordActions.Add("HOH", Laugh);
+		keywordActions.Add("HOHO", Laugh);
+		keywordActions.Add("HOHOHO", Laugh);
+		keywordActions.Add("HOHOHOHO", Laugh);
 		keywordActions.Add("HEE", Laugh);
+		keywordActions.Add("HEEHEE", Laugh);
+		keywordActions.Add("HEEHEEHEE", Laugh);
+		keywordActions.Add("HEEHEEHEEHEE", Laugh);
 
         keywordRecognizer = new KeywordRecognizer(keywordActions.Keys.ToArray(), ConfidenceLevel.Low);
         keywordRecognizer.OnPhraseRecognized += OnKeywordsRecognized;
