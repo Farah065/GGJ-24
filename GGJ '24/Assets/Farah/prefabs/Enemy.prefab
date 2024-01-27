@@ -98,5 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletAmount: 5
-  startAngle: 0
-  endAngle: 0
+  angleToPlayer: 0
+  spread: 130
+  bulSpeed: 5
