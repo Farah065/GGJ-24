@@ -3,16 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
 
+    public AudioClip[] stepClips;
+    private AudioSource audioSrc;
+
     public float moveSpeed;
     public float forceDamping;
     private Vector2 forceToApply;
     private Vector2 PlayerInput;
+
+    public float dashTimer;
+    public float dashBoost;
+    public bool dashing;
 
     public bool canMove;
     public bool invincible;
@@ -21,51 +29,61 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audioSrc = GetComponent<AudioSource>();
+
         canMove = true;
         invincible = false;
+        dashing = false;
+        dashTimer = 0;
+        dashBoost = 20;
+
+        StartCoroutine(steps());
     }
     void Update()
     {
         PlayerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        
     }
     void FixedUpdate()
     {
         if (canMove)
         {
-            Vector2 moveForce = PlayerInput * moveSpeed;
-            moveForce += forceToApply;
-            forceToApply /= forceDamping;
-            if (Mathf.Abs(forceToApply.x) <= 0.01f && Mathf.Abs(forceToApply.y) <= 0.01f)
+            if (!dashing)
             {
-                forceToApply = Vector2.zero;
-            }
-            rb.velocity = moveForce;
-            
-            if(rb.velocity.x > 0)
-            {
-                anim.SetInteger("x", 1);
-            }
-            else if(rb.velocity.x < 0)
-            {
-                anim.SetInteger("x", -1);
-            }
-            else
-            {
-                anim.SetInteger("x", 0);
+                Vector2 moveForce = PlayerInput * moveSpeed;
+                if (PlayerInput == Vector2.zero)
+                {
+                    moveForce = rb.velocity * 0.9f;
+                }
+                moveForce += forceToApply;
+                forceToApply /= forceDamping;
+
+                if (Mathf.Abs(forceToApply.x) <= 0.01f && Mathf.Abs(forceToApply.y) <= 0.01f)
+                {
+                    forceToApply = Vector2.zero;
+                }
+                rb.velocity = moveForce;
+                dashTimer -= Time.deltaTime;
             }
 
-            if (rb.velocity.y > 0)
+            if (dashTimer <= 0 && Input.GetKey(KeyCode.Space) && rb.velocity != Vector2.zero)
             {
-                anim.SetInteger("y", 1);
+                StartCoroutine(Dash(rb.velocity.normalized));
             }
-            else if (rb.velocity.y < 0)
-            {
-                anim.SetInteger("y", -1);
-            }
+
+            if (rb.velocity.x > 1)
+                anim.SetInteger("x", 1);
+            else if(rb.velocity.x < -1)
+                anim.SetInteger("x", -1);
             else
-            {
+                anim.SetInteger("x", 0);
+
+            if (rb.velocity.y > 1)
+                anim.SetInteger("y", 1);
+            else if (rb.velocity.y < -1)
+                anim.SetInteger("y", -1);
+            else
                 anim.SetInteger("y", 0);
-            }
         }
     }
 
@@ -81,6 +99,15 @@ public class Player : MonoBehaviour
             }
             collision.gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator Dash(Vector2 dir)
+    {
+        dashTimer = 3;
+        dashing = true;
+        rb.velocity = dir.normalized * dashBoost;
+        yield return new WaitForSeconds(0.1f);
+        dashing = false;
     }
 
     private IEnumerator hit()
@@ -105,5 +132,15 @@ public class Player : MonoBehaviour
         canMove = false;
         yield return new WaitForSeconds(0.2f);
         canMove = true;
+    }
+
+    IEnumerator steps()
+    {
+        while (Mathf.Abs(rb.velocity.x) <= 1 && Mathf.Abs(rb.velocity.y) <= 1)
+            yield return null;
+        int i = UnityEngine.Random.Range(0, 4);
+        audioSrc.PlayOneShot(stepClips[i]);
+        yield return new WaitForSeconds(0.3f);
+        StartCoroutine(steps());
     }
 }
