@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,10 @@ public class FireBullets : MonoBehaviour
     private int bulletAmount;
 
     [SerializeField]
-    private float startAngle, endAngle;
+    private float angleToPlayer, spread;
 
-    private Vector2 bulletMoveDirection;
+    [SerializeField]
+    private float bulSpeed;
 
     private GameObject player;
 
@@ -22,45 +24,37 @@ public class FireBullets : MonoBehaviour
         InvokeRepeating("Fire", 0f, 2f);
 
         Vector3 directionToTarget = player.transform.position - transform.position;
-
-        float angleRadians = Mathf.Atan2(directionToTarget.y, directionToTarget.x);
-        float angleDegrees = angleRadians * Mathf.Rad2Deg;
-
-        startAngle = -angleDegrees + 30;
-        endAngle = -angleDegrees + 150;
+        angleToPlayer = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
     }
 
     private void Update()
     {
         Vector3 directionToTarget = player.transform.position - transform.position;
-
-        float angleRadians = Mathf.Atan2(directionToTarget.y, directionToTarget.x);
-        float angleDegrees = angleRadians * Mathf.Rad2Deg;
-
-        startAngle = -angleDegrees + 30;
-        endAngle = -angleDegrees + 150;
+        angleToPlayer = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
     }
 
     private void Fire()
     {
-        float angleStep = (endAngle - startAngle) / bulletAmount;
-        float angle = startAngle;
+        float angleStep = (spread) / bulletAmount - 1;
+        float startAngle = -(angleToPlayer - spread);
+        float curAngle = startAngle - 90;
 
-        for (int i = 0; i <= bulletAmount; i++)
+        for (int i = 0; i < bulletAmount; i++)
         {
-            float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
-            float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
+            float bulDirX = transform.position.x + Mathf.Sin((curAngle * Mathf.PI) / 180f);
+            float bulDirY = transform.position.y + Mathf.Cos((curAngle * Mathf.PI) / 180f);
 
             Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
             Vector2 bulDir = (bulMoveVector - transform.position).normalized;
 
             GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
+            Rigidbody2D bulRb = bul.GetComponent<Rigidbody2D>();
             bul.transform.position = transform.position;
             bul.transform.rotation = transform.rotation;
             bul.SetActive(true);
-            bul.GetComponent<Bullet>().SetMoveDirection(bulDir);
+            bulRb.velocity = bulDir * bulSpeed;
 
-            angle += angleStep;
+            curAngle += angleStep;
         }
     }
 }

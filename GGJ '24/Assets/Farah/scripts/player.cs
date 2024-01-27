@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -30,8 +31,8 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.CompareTag("Bullet"))
         {
-            // temp code, replace with some sort of condition for bullet direction
-            // forceToApply = new Vector2(PlayerInput.x * -15f, PlayerInput.y * -15f);
+            forceToApply = new Vector2(collision.rigidbody.velocity.x * 1.5f, collision.rigidbody.velocity.y * 1.5f);
+            collision.gameObject.SetActive(false);
         }
     }
 }
