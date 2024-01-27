@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     public bool canMove;
     public bool invincible;
 
+    public int hp;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -34,8 +37,11 @@ public class Player : MonoBehaviour
         canMove = true;
         invincible = false;
         dashing = false;
+
         dashTimer = 0;
         dashBoost = 20;
+
+        hp = 8;
 
         StartCoroutine(steps());
     }
@@ -93,11 +99,21 @@ public class Player : MonoBehaviour
         {
             if (!invincible)
             {
+                collision.gameObject.SetActive(false);
+                hp -= 1;
+                if (hp <= 0)
+                {
+                    canMove = false;
+                    Debug.Log("you died");
+                    rb.velocity = new Vector2(0, 0);
+                    Collider2D c = gameObject.GetComponent<Collider2D>();
+                    c.enabled = false;
+                    return;
+                }
                 forceToApply = new Vector2(collision.rigidbody.velocity.x * 1.3f, collision.rigidbody.velocity.y * 1.3f);
                 StartCoroutine(hit());
                 StartCoroutine(stopMove());
             }
-            collision.gameObject.SetActive(false);
         }
     }
 

@@ -735,10 +735,11 @@ GameObject:
   m_Component:
   - component: {fileID: 812489185}
   - component: {fileID: 812489184}
-  - component: {fileID: 812489186}
   - component: {fileID: 812489187}
+  - component: {fileID: 812489191}
   - component: {fileID: 812489189}
   - component: {fileID: 812489188}
+  - component: {fileID: 812489186}
   - component: {fileID: 812489190}
   m_Layer: 0
   m_Name: Player
@@ -858,6 +859,7 @@ MonoBehaviour:
   dashing: 0
   canMove: 0
   invincible: 0
+  hp: 0
 --- !u!70 &812489188
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -991,6 +993,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &812489191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812489183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659a4232df2640342bd22af304597513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLaughing: 0
+  laughBufferLength: 3
+  laughBufferCountdown: 0
+  playerObj: {fileID: 0}
 --- !u!1 &826215094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,7 +1482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6277890656884050180, guid: 6ca98e259aea947499658cbaff574d1d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ca98e259aea947499658cbaff574d1d, type: 3}
