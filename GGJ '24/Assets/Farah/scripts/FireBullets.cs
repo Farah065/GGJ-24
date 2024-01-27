@@ -50,7 +50,10 @@ public class FireBullets : MonoBehaviour
             GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
             Rigidbody2D bulRb = bul.GetComponent<Rigidbody2D>();
             bul.transform.position = transform.position;
-            bul.transform.rotation = transform.rotation;
+
+            float angleInDegrees = Mathf.Atan2(bulDir.y, bulDir.x) * Mathf.Rad2Deg;
+            bul.transform.rotation = Quaternion.Euler(0f, 0f, angleInDegrees + 90);
+
             bul.SetActive(true);
             bulRb.velocity = bulDir * bulSpeed;
 
