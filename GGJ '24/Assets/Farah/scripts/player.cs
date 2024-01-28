@@ -28,11 +28,15 @@ public class Player : MonoBehaviour
 
     public int hp;
 
+    private ParticleSystem ps;
+    public Material playerMaterial;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         audioSrc = GetComponent<AudioSource>();
+        ps = GetComponent<ParticleSystem>();
 
         canMove = true;
         invincible = false;
@@ -100,7 +104,7 @@ public class Player : MonoBehaviour
             if (!invincible)
             {
                 collision.gameObject.SetActive(false);
-                hp -= 1;
+                hp -= 4;
                 if (hp <= 0)
                 {
                     canMove = false;
@@ -108,6 +112,27 @@ public class Player : MonoBehaviour
                     rb.velocity = new Vector2(0, 0);
                     Collider2D c = gameObject.GetComponent<Collider2D>();
                     c.enabled = false;
+                    SpriteRenderer ren = gameObject.GetComponent<SpriteRenderer>();
+                    ren.enabled = false;
+
+                    if (hp == 0)
+                    {
+                        ps.Stop();
+                        ParticleSystem.Burst[] bursts = {new ParticleSystem.Burst(0, 1, 1, 1, 0.2f)};
+                        ps.emission.SetBursts(bursts);
+                        var main = ps.main;
+                        main.startLifetime = 3;
+                        main.startSpeed = 10;
+                        main.startSize = 1.3f;
+                        main.gravityModifier = 3;
+                        var size = ps.sizeOverLifetime;
+                        size.enabled = false;
+                        var rotation = ps.rotationOverLifetime;
+                        rotation.enabled = true;
+                        ParticleSystemRenderer pr = ps.GetComponent<ParticleSystemRenderer>();
+                        pr.material = playerMaterial;
+                        ps.Play();
+                    }
                     return;
                 }
                 forceToApply = new Vector2(collision.rigidbody.velocity.x * 1.3f, collision.rigidbody.velocity.y * 1.3f);

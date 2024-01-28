@@ -61,8 +61,9 @@ public class LaughToHeal : MonoBehaviour
 
     void Laugh()
     {
-        StartCoroutine(Particle());
-        if(laughCooldown <= 0)
+        if(Player.hp > 0)
+            StartCoroutine(Particle());
+        if(laughCooldown <= 0 & Player.hp > 0)
             isLaughing = true;
     }
 
@@ -85,7 +86,6 @@ public class LaughToHeal : MonoBehaviour
     private IEnumerator Particle()
     {
         ps.Play();
-        Debug.Log("emit");
         yield return new WaitForSeconds(2);
         ps.Stop();
     }
