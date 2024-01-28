@@ -25,6 +25,9 @@ public class meleeEnemyShark : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 scale = tr.localScale;
+        scale.x = Mathf.Sign(trajectory.x);
+        tr.localScale = scale;
         float d = Mathf.Sqrt(Mathf.Pow(player.position.x - transform.position.x, 2) + Mathf.Pow(player.position.y - transform.position.y, 2));
         if (d > 3)
         {
