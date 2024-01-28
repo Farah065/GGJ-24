@@ -184,6 +184,10 @@ MonoBehaviour:
   m_text: 'The lone jester faced with overwhelming odds finds HEALING in laughter.
 
 
+    Move:
+    WASD         Shoot: Left-Click         Dash: Space         Heal: Laugh
+
+
     Laugh
     into the microphone 3 times to start.
 
@@ -274,7 +278,6 @@ GameObject:
   m_Component:
   - component: {fileID: 207875919}
   - component: {fileID: 207875918}
-  - component: {fileID: 207875917}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -282,14 +285,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &207875917
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207875916}
-  m_Enabled: 1
 --- !u!20 &207875918
 Camera:
   m_ObjectHideFlags: 0
@@ -300,7 +295,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.3207547, g: 0.09229262, b: 0.09423217, a: 0}
+  m_BackGroundColor: {r: 0.4745098, g: 0.19215687, b: 0.20392157, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
