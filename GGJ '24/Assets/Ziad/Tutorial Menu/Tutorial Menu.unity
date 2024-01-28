@@ -184,6 +184,10 @@ MonoBehaviour:
   m_text: 'The lone jester faced with overwhelming odds finds HEALING in laughter.
 
 
+    Move:
+    WASD         Shoot: Left-Click         Dash: Space         Heal: Laugh
+
+
     Laugh
     into the microphone 3 times to start.
 
