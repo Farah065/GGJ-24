@@ -27,6 +27,19 @@ public class Player : MonoBehaviour
     public bool invincible;
 
     public int hp;
+    public Sprite[] clubs;
+    public Sprite[] diamonds;
+    public Sprite[] hearts;
+    public Sprite[] spades;
+
+    public GameObject club;
+    private SpriteRenderer cRen;
+    public GameObject diamond;
+    private SpriteRenderer dRen;
+    public GameObject heart;
+    private SpriteRenderer hRen;
+    public GameObject spade;
+    private SpriteRenderer sRen;
 
     private ParticleSystem ps;
     public Material playerMaterial;
@@ -37,6 +50,11 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         audioSrc = GetComponent<AudioSource>();
         ps = GetComponent<ParticleSystem>();
+
+        cRen = club.GetComponent<SpriteRenderer>();
+        dRen = diamond.GetComponent<SpriteRenderer>();
+        hRen = heart.GetComponent<SpriteRenderer>();
+        sRen = spade.GetComponent<SpriteRenderer>();
 
         canMove = true;
         invincible = false;
@@ -52,7 +70,45 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        
+        if (hp == 8)
+        {
+            sRen.sprite = spades[0];
+        }
+        else if (hp == 7)
+        {
+            sRen.sprite = spades[1];
+        }
+        else if(hp == 6)
+        {
+            sRen.sprite = spades[2];
+            hRen.sprite = hearts[0];
+        }
+        else if(hp == 5)
+        {
+            hRen.sprite = hearts[1];
+        }
+        else if (hp == 4)
+        {
+            hRen.sprite = hearts[2];
+            dRen.sprite = diamonds[0];
+        }
+        else if (hp == 3)
+        {
+            dRen.sprite = diamonds[1];
+        }
+        else if (hp == 2)
+        {
+            dRen.sprite = diamonds[2];
+            cRen.sprite = clubs[0];
+        }
+        else if (hp == 1)
+        {
+            cRen.sprite = clubs[1];
+        }
+        else if (hp == 0)
+        {
+            cRen.sprite = clubs[2];
+        }
     }
     void FixedUpdate()
     {
@@ -104,7 +160,7 @@ public class Player : MonoBehaviour
             if (!invincible)
             {
                 collision.gameObject.SetActive(false);
-                hp -= 4;
+                hp -= 1;
                 if (hp <= 0)
                 {
                     canMove = false;
