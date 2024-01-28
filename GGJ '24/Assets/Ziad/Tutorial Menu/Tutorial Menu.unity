@@ -185,13 +185,17 @@ MonoBehaviour:
 
 
     Move:
-    WASD         Shoot: Left-Click         Dash: Space         Heal: Laugh
+    WASD         Shoot: Left-Click         Dash: Space
 
 
-    Laugh
-    into the microphone 3 times to start.
+    Heal: Laugh        
+    Esc/P: Pause
 
-    (It is reccommended to say "HA" clearly)'
+
+    Laugh into the microphone 3 times to start.
+
+    (It is reccommended
+    to say "HA" clearly)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de622d4cb0cb29648af6f06315336704, type: 2}
   m_sharedMaterial: {fileID: 6273336934538568645, guid: de622d4cb0cb29648af6f06315336704, type: 2}
@@ -381,7 +385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -104}
+  m_AnchoredPosition: {x: 0, y: -171}
   m_SizeDelta: {x: 270, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &411949718
@@ -643,7 +647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -61}
+  m_AnchoredPosition: {x: 0, y: -111}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1487304805
