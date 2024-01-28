@@ -7,8 +7,6 @@ public class StartButton : MonoBehaviour
 {
     Button button;
     Image image;
-    public Sprite unactivated;
-    public Sprite activated;
     public GameObject EventSystem;
     // Start is called before the first frame update
     void Start()
@@ -24,12 +22,10 @@ public class StartButton : MonoBehaviour
         if (counter >= 3)
         {
             button.interactable = true;
-            image.sprite = activated;
         }
         else
         {
             button.interactable = false;
-            image.sprite = unactivated;
         }
     }
 }
