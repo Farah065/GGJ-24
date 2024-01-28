@@ -38,6 +38,11 @@ public class MainMenu : MonoBehaviour
         master.SetFloat("sfxVolume", Mathf.Log10(PlayerPrefs.GetFloat("sfxVolume", 1)) * 20);*/
     }
 
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Tutorial Menu");
+    }
+
     public void SettingsScene()
     {
         SceneManager.LoadScene("Settings");

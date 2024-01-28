@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Farah/scenes/Settings.unity
     guid: 81a463cb4167f974796823021d7529e6
+  - enabled: 1
+    path: Assets/Ziad/Tutorial Menu/Tutorial Menu.unity
+    guid: 2d34365a5a8b6ec46a381dd28256882a
   m_configObjects: {}
