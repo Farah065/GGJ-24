@@ -19,12 +19,15 @@ public class LaughToHeal : MonoBehaviour
     public GameObject playerObj;
     Player Player;
 
-    // Start is called before the first frame update
+    private ParticleSystem ps;
+
     void Start()
     {
         playerObj = GameObject.FindWithTag("Player");
         Player = playerObj.GetComponent<Player>();
         laughCooldown = 0;
+
+        ps = GetComponent<ParticleSystem>();
 
         keywordActions.Add("A", Laugh);
         keywordActions.Add("H", Laugh);
@@ -58,6 +61,7 @@ public class LaughToHeal : MonoBehaviour
 
     void Laugh()
     {
+        StartCoroutine(Particle());
         if(laughCooldown <= 0)
             isLaughing = true;
     }
@@ -76,5 +80,13 @@ public class LaughToHeal : MonoBehaviour
             if (Player.hp < 8)
                 Player.hp += 1;
         }
+    }
+
+    private IEnumerator Particle()
+    {
+        ps.Play();
+        Debug.Log("emit");
+        yield return new WaitForSeconds(2);
+        ps.Stop();
     }
 }
