@@ -6911,11 +6911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8486bcf5b5f55364cbe26d776c2ad6a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepClips:
-  - {fileID: 8300000, guid: eb24a949b6f71794f9cd057d577a5f4e, type: 3}
-  - {fileID: 8300000, guid: 565143028340b0141ac8b811e3bde507, type: 3}
-  - {fileID: 8300000, guid: 94e572e44eaf20d48b3b76be01a64bff, type: 3}
-  - {fileID: 8300000, guid: 6974313b858f41b4eb8526e67cc322d9, type: 3}
+  stepClips: []
   moveSpeed: 5.5
   forceDamping: 1.2
   dashTimer: 0
@@ -6944,7 +6940,7 @@ MonoBehaviour:
   diamond: {fileID: 298307500}
   heart: {fileID: 2139203035}
   spade: {fileID: 1618166370}
-  playerMaterial: {fileID: 2100000, guid: c82f7d1a52beca54ab391673d6997740, type: 2}
+  playerMaterial: {fileID: 0}
 --- !u!212 &1530983966
 SpriteRenderer:
   m_ObjectHideFlags: 0

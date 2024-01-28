@@ -6,11 +6,6 @@ public class TutorialMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Settings");
-    }
-
-    void Update()
-    {
-
+        SceneManager.LoadScene("Level");
     }
 }
