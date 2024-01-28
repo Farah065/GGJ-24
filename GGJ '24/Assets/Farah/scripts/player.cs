@@ -159,7 +159,6 @@ public class Player : MonoBehaviour
         {
             if (!invincible)
             {
-                collision.gameObject.SetActive(false);
                 hp -= 1;
                 if (hp <= 0)
                 {
@@ -195,6 +194,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(hit());
                 StartCoroutine(stopMove());
             }
+            collision.gameObject.SetActive(false);
         }
     }
 
