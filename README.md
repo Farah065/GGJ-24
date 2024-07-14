@@ -5,3 +5,5 @@ Last Punchline is a game created in Unity for the Global Game Jam 2024, with the
 [Itch Page](https://fiddle594.itch.io/last-punchline)
 
 [GGJ Page](https://globalgamejam.org/games/2024/last-punchline-7)
+
+Download the executable build folder from either link, unzip it, and run `GGJ '24.exe`.
